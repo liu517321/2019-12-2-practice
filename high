@@ -1,0 +1,35 @@
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while(sc.hasNext()) {
+            int n = sc.nextInt(); // 学生的数目
+            int m = sc.nextInt(); // 操作的数目
+            int[] arr = new int[n];
+            for(int i = 0; i < n; i++) {
+                arr[i] = sc.nextInt();
+            }
+            sc.nextLine(); // 注意此处
+            for(int i = 0; i < m; i++) {
+                String[] line = sc.nextLine().split(" ");
+                int a = Integer.parseInt(line[1]) - 1;
+                int b = Integer.parseInt(line[2]) - 1;
+                switch(line[0]) {
+                    case "Q":
+                        int max = 0;
+                        for(int j = Math.min(a, b); j <= Math.max(a, b); j++) {
+                            max = Math.max(max, arr[j]);
+                        }
+                        System.out.println(max);
+                        break;
+                    case "U":
+                        arr[a] = b + 1;
+                        break;
+                }
+            }
+        }
+        sc.close();
+    }
+}
